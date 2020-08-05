@@ -3,7 +3,7 @@
 
 # ## Imports
 
-# In[1]:
+# In[2]:
 
 
 import numpy as np
@@ -30,7 +30,7 @@ import sys
 
 # ## Genotype & Phenotype Simulation
 
-# In[11]:
+# In[3]:
 
 
 #Simulate Genotype
@@ -46,7 +46,7 @@ def simulate_genotype(samples_n, loci_m):
 
 # ### Set beta and envi noise
 
-# In[3]:
+# In[4]:
 
 
 #Provide beta_g, e_noise and get G with genotype & Phenotype data
@@ -93,26 +93,29 @@ def simulate_genotype_and_phenotype_var(samples_n, loci_m,var_g,var_e):
 
 # ## Random Forest Regression & SHAP 
 
-# In[13]:
+# In[14]:
 
 
-def shap_RFR_tree_train(G):
+def shap_LR_kernel_train(G):
     X = G[:,0:len(G[0])-2]
     y = G[:,len(G[0])-1]
     x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
-    forReg = RandomForestRegressor(max_depth=10, random_state=0, n_estimators=50)
-    forReg.fit(x_train, y_train)
-    
-    shap_values = shap.TreeExplainer(forReg).shap_values(x_train)
+    #forReg = RandomForestRegressor(max_depth=10, random_state=0, n_estimators=50)
+    #forReg.fit(x_train, y_train)
+    linReg = LinearRegression() 
+    linReg.fit(x_train, y_train)
+    explainer = shap.KernelExplainer(linReg.predict, shap.sample(x_train,100))
+    shap_values = explainer.shap_values(x_test)
+    #shap_values = shap.TreeExplainer(forReg).shap_values(x_train)
     return shap_values, x_train
 
-def shap_feature_plot_RFR(shap_values, x_train):
+def shap_feature_plot_LR(shap_values, x_train):
     shap.summary_plot(shap_values, x_train, plot_type="bar")
 
 
 # ## Calculate SHAP
 
-# In[74]:
+# In[15]:
 
 
 def mean_shap_values(shap_values):
@@ -170,7 +173,7 @@ def max_mean_features(shap_values, no_features = 2):
 
 # ## Calculating Accuracy
 
-# In[81]:
+# In[16]:
 
 
 def shap_acc_RFR_set(samples_n, loci_m, beta_g, e_noise, number_trials, confidence = 0.95):
@@ -178,7 +181,7 @@ def shap_acc_RFR_set(samples_n, loci_m, beta_g, e_noise, number_trials, confiden
     counter = 0
     while counter != number_trials:
         G, loci = simulate_genotype_and_phenotype_set(samples_n, loci_m,beta_g,e_noise)
-        shap_values_holder, x_train = shap_RFR_tree_train(G)
+        shap_values_holder, x_train = shap_LR_kernel_train(G)
         max_holder = max_mean_feature(shap_values_holder)
         if max_holder[0] == loci:
             shap_values_SNP.append(1)
@@ -201,7 +204,7 @@ def shap_acc_RFR_var(samples_n, loci_m, var_g, var_e, number_trials):
     counter = 0
     while counter != number_trials:
         G, loci = simulate_genotype_and_phenotype_var(samples_n,loci_m, var_g , var_e)
-        shap_values_holder, x_train = shap_RFR_tree_train(G)
+        shap_values_holder, x_train = shap_LR_kernel_train(G)
         max_holder = max_mean_feature(shap_values_holder)
         if max_holder[0] == loci:
             shap_values_SNP.append(1)
@@ -213,7 +216,7 @@ def shap_acc_RFR_var(samples_n, loci_m, var_g, var_e, number_trials):
     return percent, confidence_int
 
 
-# In[87]:
+# In[17]:
 
 
 #samples_n = 100
@@ -227,7 +230,7 @@ def shap_acc_RFR_var(samples_n, loci_m, var_g, var_e, number_trials):
 #pickle.dump( [percent, beta_g, e_noise, confidence_int], open( "save.p", "wb" ) )
 
 
-# In[88]:
+# In[18]:
 
 
 #favorite_color = pickle.load( open( "save.p", "rb" ) )
@@ -236,7 +239,7 @@ def shap_acc_RFR_var(samples_n, loci_m, var_g, var_e, number_trials):
 
 # ## Graphing
 
-# In[8]:
+# In[20]:
 
 
 #Line Plots
@@ -307,7 +310,7 @@ def plot_shap_values_RFR_line_single(samples_n, loci_m, range_values, e_val, num
 #plot_shap_values_RFR_line_single(samples_n, loci_m, range_values, 0.9, number_trials, data_type = 'var')
 
 
-# In[78]:
+# In[21]:
 
 
 #Line Plots
@@ -362,7 +365,7 @@ def plot_shap_values_RFR_line_multiple(samples_n, loci_m, range_values_g, range_
     plt.savefig(name)
 
 
-# In[80]:
+# In[22]:
 
 
 #samples_n = 100
@@ -374,7 +377,7 @@ def plot_shap_values_RFR_line_multiple(samples_n, loci_m, range_values_g, range_
 #plot_shap_values_RFR_line_multiple(samples_n, loci_m, range_values_g, range_values_e, number_trials,'RFR_var_10000', data_type = 'var' )
 
 
-# In[10]:
+# In[23]:
 
 
 #Bar Plots
@@ -427,7 +430,6 @@ def plot_shap_values_RFR_bar(samples_n, loci_m, range_values, e_val, number_tria
 
 
 # In[ ]:
-
 beta_g = float(sys.argv[1])
 e_noise = float(sys.argv[2])
 filename = str(sys.argv[3])
@@ -435,12 +437,12 @@ filename = str(sys.argv[3])
 samples_n = 100
 loci_m = 10
 number_trials = 100
-#beta_g, e_noise = 0.9, 0.2
-percent, confidence_int = shap_acc_RFR_set(samples_n, loci_m, beta_g, e_noise , number_trials, confidence = 0.95)
-#print(percent)
-#print(confidence_int)
-    
-pickle.dump( [percent, beta_g, e_noise, confidence_int], open( filename, "wb" ) )
+# beta_g, e_noise = 0.9, 0.2
+percent, confidence_int = shap_acc_RFR_set(samples_n, loci_m, beta_g, e_noise, number_trials, confidence=0.95)
+# print(percent)
+# print(confidence_int)
+
+pickle.dump([percent, beta_g, e_noise, confidence_int], open(filename, "wb"))
 
 
 # In[4]:
