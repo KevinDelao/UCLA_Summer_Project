@@ -176,7 +176,7 @@ def max_mean_features(shap_values, no_features = 2):
 # In[16]:
 
 
-def shap_acc_RFR_set(samples_n, loci_m, beta_g, e_noise, number_trials, confidence = 0.95):
+def shap_acc_LR_set(samples_n, loci_m, beta_g, e_noise, number_trials, confidence = 0.95):
     shap_values_SNP = []
     counter = 0
     while counter != number_trials:
@@ -199,7 +199,7 @@ def shap_acc_RFR_set(samples_n, loci_m, beta_g, e_noise, number_trials, confiden
     return percent, confidence_int
     
 
-def shap_acc_RFR_var(samples_n, loci_m, var_g, var_e, number_trials):
+def shap_acc_LR_var(samples_n, loci_m, var_g, var_e, number_trials):
     shap_values_SNP = []
     counter = 0
     while counter != number_trials:
@@ -257,11 +257,11 @@ def plot_shap_values_RFR_line_single(samples_n, loci_m, range_values, e_val, num
     
     if data_type == 'set':
         for x in range(0,range_values):
-            percent, confidence_int = shap_acc_RFR_set(samples_n, loci_m, g_vals[x], e_val, number_trials)
+            percent, confidence_int = shap_acc_LR_set(samples_n, loci_m, g_vals[x], e_val, number_trials)
             shap_values_SNP.append(percent)
     elif data_type == 'var':
         for x in range(0,range_values):
-            percent, confidence_int = shap_acc_RFR_var(samples_n, loci_m, g_vals[x], e_val, number_trials)
+            percent, confidence_int = shap_acc_LR_var(samples_n, loci_m, g_vals[x], e_val, number_trials)
             shap_values_SNP.append(percent)
 
             
@@ -338,14 +338,14 @@ def plot_shap_values_RFR_line_multiple(samples_n, loci_m, range_values_g, range_
         for y in range(0, range_values_e):
             shap_values_SNP_holder = []
             for x in range(0,range_values_g):
-                percent, confidence_int = shap_acc_RFR_set(samples_n, loci_m, g_vals[x], e_vals[y], number_trials)
+                percent, confidence_int = shap_acc_LR_set(samples_n, loci_m, g_vals[x], e_vals[y], number_trials)
                 shap_values_SNP_holder.append(percent)
             shap_values_SNP.append(shap_values_SNP_holder)
     elif data_type == 'var':
         for y in range(0, range_values_e):
             shap_values_SNP_holder = []
             for x in range(0,range_values_g):
-                percent, confidence_int = shap_acc_RFR_var(samples_n, loci_m, g_vals[x], e_vals[y], number_trials)
+                percent, confidence_int = shap_acc_LR_var(samples_n, loci_m, g_vals[x], e_vals[y], number_trials)
                 shap_values_SNP_holder.append(percent)
             shap_values_SNP.append(shap_values_SNP_holder)
 
@@ -391,13 +391,13 @@ def plot_shap_values_RFR_bar(samples_n, loci_m, range_values, e_val, number_tria
     error = []
     if data_type == 'set':
         for x in range(0,range_values):
-            percent, confidence_int = shap_acc_RFR_set(samples_n, loci_m, g_vals[x], e_val, number_trials)
+            percent, confidence_int = shap_acc_LR_set(samples_n, loci_m, g_vals[x], e_val, number_trials)
             shap_values_SNP.append(percent)
             error.append(confidence_int)
             print(confidence_int)
     elif data_type == 'var':
         for x in range(0,range_values):
-            percent, confidence_int = shap_acc_RFR_var(samples_n, loci_m, g_vals[x], e_val, number_trials)
+            percent, confidence_int = shap_acc_LR_var(samples_n, loci_m, g_vals[x], e_val, number_trials)
             shap_values_SNP.append(percent)
             error.append(confidence_int)
 
@@ -430,19 +430,28 @@ def plot_shap_values_RFR_bar(samples_n, loci_m, range_values, e_val, number_tria
 
 
 # In[ ]:
-beta_g = float(sys.argv[1])
-e_noise = float(sys.argv[2])
-filename = str(sys.argv[3])
+#beta_g = float(sys.argv[1])
+#e_noise = float(sys.argv[2])
+#filename = str(sys.argv[3])
 
-samples_n = 100
-loci_m = 10
+samples_n = 500
+loci_m = 20
 number_trials = 100
-# beta_g, e_noise = 0.9, 0.2
-percent, confidence_int = shap_acc_RFR_set(samples_n, loci_m, beta_g, e_noise, number_trials, confidence=0.95)
+e_noise = 0
+if int(sys.argv[1]) <= 10:
+    beta_g = int(sys.argv[1]) / 10
+else:
+    beta_g = 0
+percent, confidence_int = shap_acc_LR_set(samples_n, loci_m, beta_g, e_noise, number_trials, confidence=0.95)
+holder = str(e_noise) + ' ' + str(beta_g) + ' ' + str(percent) + ' ' + str(confidence_int) + ' ' + '\n'
 # print(percent)
 # print(confidence_int)
+#pickle.dump([percent, beta_g, e_noise, confidence_int], open(filename, "wb"))
+f=open("LR0noise.txt", "a+")
+f.write(holder)
+f.close()
 
-pickle.dump([percent, beta_g, e_noise, confidence_int], open(filename, "wb"))
+
 
 
 # In[4]:

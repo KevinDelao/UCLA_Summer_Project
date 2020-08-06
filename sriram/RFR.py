@@ -3,7 +3,7 @@
 
 # ## Imports
 
-# In[1]:
+# In[15]:
 
 
 import numpy as np
@@ -25,12 +25,11 @@ import warnings
 warnings.filterwarnings('ignore')
 
 import pickle
-import sys
 
 
 # ## Genotype & Phenotype Simulation
 
-# In[11]:
+# In[16]:
 
 
 #Simulate Genotype
@@ -46,7 +45,7 @@ def simulate_genotype(samples_n, loci_m):
 
 # ### Set beta and envi noise
 
-# In[3]:
+# In[17]:
 
 
 #Provide beta_g, e_noise and get G with genotype & Phenotype data
@@ -93,7 +92,7 @@ def simulate_genotype_and_phenotype_var(samples_n, loci_m,var_g,var_e):
 
 # ## Random Forest Regression & SHAP 
 
-# In[13]:
+# In[18]:
 
 
 def shap_RFR_tree_train(G):
@@ -112,7 +111,7 @@ def shap_feature_plot_RFR(shap_values, x_train):
 
 # ## Calculate SHAP
 
-# In[74]:
+# In[19]:
 
 
 def mean_shap_values(shap_values):
@@ -170,7 +169,7 @@ def max_mean_features(shap_values, no_features = 2):
 
 # ## Calculating Accuracy
 
-# In[81]:
+# In[20]:
 
 
 def shap_acc_RFR_set(samples_n, loci_m, beta_g, e_noise, number_trials, confidence = 0.95):
@@ -213,7 +212,7 @@ def shap_acc_RFR_var(samples_n, loci_m, var_g, var_e, number_trials):
     return percent, confidence_int
 
 
-# In[87]:
+# In[22]:
 
 
 #samples_n = 100
@@ -227,7 +226,7 @@ def shap_acc_RFR_var(samples_n, loci_m, var_g, var_e, number_trials):
 #pickle.dump( [percent, beta_g, e_noise, confidence_int], open( "save.p", "wb" ) )
 
 
-# In[88]:
+# In[23]:
 
 
 #favorite_color = pickle.load( open( "save.p", "rb" ) )
@@ -236,7 +235,7 @@ def shap_acc_RFR_var(samples_n, loci_m, var_g, var_e, number_trials):
 
 # ## Graphing
 
-# In[8]:
+# In[21]:
 
 
 #Line Plots
@@ -273,23 +272,23 @@ def plot_shap_values_RFR_line_single(samples_n, loci_m, range_values, e_val, num
         plt.ylabel('Percent accuracy of feature selection')
         plt.title('Effect of Variance Genetic Effect on SHAP Accuracy in Feature Selection') 
         
-    plt.show()
+    #plt.show()
 
 
-# In[77]:
+# In[26]:
 
 
-#samples_n = 100
-#loci_m = 10
-#range_values = 10
-#number_trials = 100
-#plot_shap_values_RFR_line_single(samples_n, loci_m, range_values, 0.3, number_trials, data_type = 'set')
+samples_n = 100
+loci_m = 10
+range_values = 10
+number_trials = 100
+plot_shap_values_RFR_line_single(samples_n, loci_m, range_values, 0.3, number_trials, data_type = 'set')
 #plot_shap_values_RFR_line_single(samples_n, loci_m, range_values, 0.5, number_trials, data_type = 'set')
 #plot_shap_values_RFR_line_single(samples_n, loci_m, range_values, 0.7, number_trials, data_type = 'set')
 #plot_shap_values_RFR_line_single(samples_n, loci_m, range_values, 0.9, number_trials, data_type = 'set')
 
 
-# In[2]:
+# In[25]:
 
 
 #samples_n = 100
@@ -307,7 +306,7 @@ def plot_shap_values_RFR_line_single(samples_n, loci_m, range_values, e_val, num
 #plot_shap_values_RFR_line_single(samples_n, loci_m, range_values, 0.9, number_trials, data_type = 'var')
 
 
-# In[78]:
+# In[10]:
 
 
 #Line Plots
@@ -351,30 +350,30 @@ def plot_shap_values_RFR_line_multiple(samples_n, loci_m, range_values_g, range_
     
     if data_type == 'set':
         plt.xlabel('Value of Genetic Effect')
-        plt.ylabel('Percent accuracy of feature selection')
+        plt.ylabel('Percent accuracy of feature selection (%)')
         plt.title('Effect of Genetic Effect on SHAP Accuracy in Feature Selection') 
     elif data_type == 'var':
         plt.xlabel('Variance of Genetic Effect')
-        plt.ylabel('Percent accuracy of feature selection')
+        plt.ylabel('Percent accuracy of feature selection (%)')
         plt.title('Effect of Variance Genetic Effect on SHAP Accuracy in Feature Selection') 
         
     plt.legend(title = 'Environmental Noise')
     plt.savefig(name)
 
 
-# In[80]:
+# In[28]:
 
 
-#samples_n = 100
-#loci_m = 10
-#range_values_g = 10
-#range_values_e = 5
-#number_trials = 100
-#plot_shap_values_RFR_line_multiple(samples_n, loci_m, range_values_g, range_values_e, number_trials, 'RFR_set_10000', data_type = 'set')
+samples_n = 100
+loci_m = 10
+range_values_g = 10
+range_values_e = 5
+number_trials = 100
+plot_shap_values_RFR_line_multiple(samples_n, loci_m, range_values_g, range_values_e, number_trials, 'RFR_set_10000', data_type = 'set')
 #plot_shap_values_RFR_line_multiple(samples_n, loci_m, range_values_g, range_values_e, number_trials,'RFR_var_10000', data_type = 'var' )
 
 
-# In[10]:
+# In[11]:
 
 
 #Bar Plots
@@ -423,27 +422,31 @@ def plot_shap_values_RFR_bar(samples_n, loci_m, range_values, e_val, number_tria
         plt.xlabel('Variance of Genetic Effect')
         plt.title('Effect of Variance Genetic Effect on SHAP Accuracy in Feature Selection') 
         
-    plt.show()
+    #plt.show()
 
 
-# In[ ]:
+# In[12]:
 
-beta_g = float(sys.argv[1])
-e_noise = float(sys.argv[2])
-filename = str(sys.argv[3])
-
+'''
 samples_n = 100
 loci_m = 10
 number_trials = 100
-#beta_g, e_noise = 0.9, 0.2
+beta_g, e_noise = 0.9, 0.2
 percent, confidence_int = shap_acc_RFR_set(samples_n, loci_m, beta_g, e_noise , number_trials, confidence = 0.95)
-#print(percent)
-#print(confidence_int)
+print(percent)
+print(confidence_int)
     
-pickle.dump( [percent, beta_g, e_noise, confidence_int], open( filename, "wb" ) )
+pickle.dump( [percent, beta_g, e_noise, confidence_int], open( "save.p", "wb" ) )
+'''
+samples_n = 500
+loci_m = 20
+number_trials = 100
+range_values_e = 5
+range_values_g = 10
 
+plot_shap_values_RFR_line_multiple(samples_n, loci_m, range_values_g, range_values_e, number_trials, 'RFR500x20', data_type = 'set')
 
-# In[4]:
+# In[13]:
 
 
 #Testing

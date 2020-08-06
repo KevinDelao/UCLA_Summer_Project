@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d539da3f-4661-44b7-8a6c-e39f5f81f8ee" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.ipynb_checkpoints/Lasso-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lasso.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sriram/LR0noise.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/LR-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/LR-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/RFR-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/RFR-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LR.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/LR.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RFR.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/RFR.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RFR_set_10000.png" beforeDir="false" afterPath="$PROJECT_DIR$/RFR_set_10000.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sriram/LR.py" beforeDir="false" afterPath="$PROJECT_DIR$/sriram/LR.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sriram/RFR.py" beforeDir="false" afterPath="$PROJECT_DIR$/sriram/RFR.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
