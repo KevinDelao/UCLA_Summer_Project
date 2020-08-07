@@ -437,7 +437,8 @@ def plot_shap_values_RFR_bar(samples_n, loci_m, range_values, e_val, number_tria
 samples_n = 500
 loci_m = 20
 number_trials = 100
-e_noise = 0
+e_noise = float(sys.argv[2])
+fname = str(sys.argv[3])
 if int(sys.argv[1]) <= 10:
     beta_g = int(sys.argv[1]) / 10
 else:
@@ -447,7 +448,7 @@ holder = str(e_noise) + ' ' + str(beta_g) + ' ' + str(percent) + ' ' + str(confi
 # print(percent)
 # print(confidence_int)
 #pickle.dump([percent, beta_g, e_noise, confidence_int], open(filename, "wb"))
-f=open("LR0noise.txt", "a+")
+f=open(fname, "a+")
 f.write(holder)
 f.close()
 
