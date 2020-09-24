@@ -2,11 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d539da3f-4661-44b7-8a6c-e39f5f81f8ee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/sriram/RFR500x20.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sriram/RFR500x20set.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sriram/RFR_set_10000.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.ipynb_checkpoints/CS4662-Lec10-Lab3-ANN&amp;CV&amp;GS_with_SciKitLearn-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CS4662-Lec10-Lab3-ANN&amp;CV&amp;GS_with_SciKitLearn.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Capture.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Capture2.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LR6noiseset.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LR_One_loci_fixed.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LR_One_loci_var.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RFR_One_Loci_fixed.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RFR_One_Loci_var.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sriram/GraphMaker.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sriram/LR0noiseset.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sriram/LR2loci.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sriram/LR2noiseset.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sriram/LR4noiseset.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sriram/LR8noiseset.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/LR-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/LR-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/Lasso-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/Lasso-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/RFR-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/RFR-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LR.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/LR.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lasso.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Lasso.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RFR.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/RFR.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sriram/LR.py" beforeDir="false" afterPath="$PROJECT_DIR$/sriram/LR.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,6 +135,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="534" y="215" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1596236303601" />
+    <state x="338" y="0" key="CommitChangelistDialog2" timestamp="1600266711467">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="338" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1600266711467" />
     <state x="550" y="168" key="FileChooserDialogImpl" timestamp="1596071669884">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
